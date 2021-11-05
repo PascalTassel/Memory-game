@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/css/memory.css" media="screen">
+  <title>Memory game avec JavaSript</title>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title"><span>Memory game</span> <small>avec JavaScript</small></h1>
+    <span class="header__mention">Codé par <a href="https://github.com/PascalTassel">Pascal Tassel</a></span>
+  </header>
+  <main class="main">
+    <ul id="cards" class="cards"></ul>
+    <div id="countdown" class="countdown hide">
+      <span id="countdown-value" class="countdown__value"></span>
+    </div>
+  </main>
+  <footer class="footer">
+    <div id="count-up" class="counter">00:00</div>
+    <div id="progress" class="progress">
+      <span id="progress-bar" class="progress__bar"></span>
+    </div>
+    <div id="duration" class="counter">00:00</div>
+  </footer>
+  <div id="overlay" class="overlay">
+    <div id="alert" class="alert">
+      <div id="alert-body" class="alert__body"></div>
+      <div id="alert-footer" class="alert__footer"></div>
+    </div>
+  </div>
+  <script src="dist/js/memory.js"></script>
+</body>
+</html>
+    
