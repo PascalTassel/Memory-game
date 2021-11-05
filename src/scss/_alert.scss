@@ -1,0 +1,152 @@
+.overlay {
+  position: fixed;
+  top: -100vh;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  background-color: $alert-overlay-bg;
+  z-index: 1;
+  overflow: hidden;
+  transition: opacity 400ms;
+
+  &.show {
+    top: 0;
+
+    .alert {
+      transform: translateY(0);
+    }
+  }
+}
+
+.alert {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  min-height: 100px;
+  width: 90vw;
+  max-width: 400px;
+  margin: 20vh auto 0;
+  padding: 10px;
+  font-size: .85rem;
+  text-align: center;
+  background-color: $alert-bg-color;
+  border-radius: 3px;
+  color: $alert-color;
+  box-shadow: $alert-box-shadow;
+  transform: translateY(-50%);
+  transition: transform 400ms;
+
+  @media (min-width: #{$md}) {
+    margin-top: 30vh;
+    padding: 20px 10px;
+  }
+}
+
+.alert__body {
+  margin-bottom: 10px;
+
+  @media (min-width: #{$md}) {
+    margin-bottom: 20px;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.alert__title {
+  margin-bottom: $line-height-computed;
+  font-size: 1.2rem;
+  font-weight: $font-weight-bold;
+}
+
+.alert__button {
+  padding: .5em 1em;
+  background-color: $card-back-bg-color;
+  border: 0;
+  border-radius: 3px;
+  color: rgba(255, 255, 255, .9);
+  cursor: pointer;
+  transition: 240ms;
+
+  &:hover {
+    background-color: darken($card-back-bg-color, 10%);
+    color: #fff;
+  }
+
+  &:not(:first-child) {
+    margin-left: .5rem;
+  }
+}
+
+.alert__input {
+  border: 0;
+  padding: .25rem;
+  border-radius: 3px;
+}
+
+.alert--scores {
+  max-width: 520px;
+}
+
+.alert__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $line-height-computed;
+  table-layout: fixed;
+
+  th,
+  td {
+    padding: .5em;
+  }
+
+  tbody {
+    tr {
+
+      &:nth-child(odd){
+        background-color: rgba($alert-color, .1);
+      }
+    }
+
+    td {
+      text-align: left;
+      vertical-align: top;
+      
+      &.rank {
+        width: 10%;
+      }
+      
+      &.player{
+        width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (min-width: #{$md}){
+          width: 50%;
+        }
+      }
+
+      &.date {
+
+        @media (min-width: #{$md}){
+          width: 30%;
+        }
+        
+        small{
+          opacity: .7;
+        }
+      }
+
+      &.time {
+        width: 15%;
+        text-align: right;
+
+        @media (min-width: #{$md}){
+          width: 15%;
+        }
+      }
+    }
+  }
+}

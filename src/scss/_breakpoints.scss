@@ -1,0 +1,11 @@
+@media (max-width: #{$md - 1px}){
+    .show-md {
+        display: none;
+    }
+}
+  
+@media (min-width: #{$md}){
+    .hide-md {
+        display: none;
+    }
+}

@@ -1,0 +1,17 @@
+.counter{
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 5rem;
+  color: $counter-color;
+  text-shadow: $counter-text-shadow;
+  white-space: nowrap;
+
+  &:first-child {
+    margin-right: 1rem;
+    text-align: right;
+  }
+
+  &:last-child {
+    margin-left: 1rem;
+  }
+}

@@ -1,0 +1,31 @@
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0/80%);
+}
+
+.countdown__value {
+  font-weight: $font-weight-bold;
+  color: #fff;
+  text-shadow: 0 0 10px rgb(0 0 0/50%);
+  animation: fade 1000ms;
+  animation-iteration-count: 5;
+  font-family: monospace;
+}
+
+@keyframes fade {
+  from {
+    font-size: 30rem;
+    opacity: 1;
+  }
+  to {
+    font-size: 20rem;
+    opacity: 0;
+  }
+}
