@@ -46,3 +46,6 @@ Le fichier `/settings.json`, situé à la racine du projet, permet de personnali
 | password  | string | Mot de passe de connection à la base de donnée, exemple : `""`                                               |
 | tableName | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
 | userName  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
+
+
+:info: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
