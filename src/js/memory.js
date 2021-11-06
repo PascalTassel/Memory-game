@@ -351,7 +351,7 @@ export default class Memory {
         if (typeof settingValue !== 'number') {
           console.error('rankingLimit setting is not a number.');
           return false;
-        } else if (settingValue < 2 || settingValue > 11) {
+        } else if (settingValue < 2 || settingValue > 10) {
           console.error('rankingLimit setting must be between 2 and 10.');
           return false;
         }
