@@ -1,15 +1,20 @@
+// Import modules
 import Alert from './alert.js';
 import Card from './card.js';
 import Counter from './counter.js';
+import Datas from './datas.js';
 import Progress from './progress.js';
 
+/**
+ * Memory module
+ * Game engine
+ */
 export default class Memory {
   
   /**
-   * Game instance
+   * Game instance : settings and init game
    */
   constructor() {
-
     // Get settings
     fetch('settings.json')
       .then((response) => {
@@ -28,10 +33,10 @@ export default class Memory {
     
         // Cards game
         this.cards = [];
-        // Nb of visible cards
-        this.nbVisibleCards = 0;
         // Current selected cards
         this.selectedCards = [];
+        // Flipped cards
+        this.flippedCards = [];
         // Game status
         this.isWin = false;
         // Player score
@@ -40,8 +45,10 @@ export default class Memory {
         this.progress = new Progress();
         // Counter instance
         this.counter = new Counter(this.duration);
+        // Datas instance
+        this.datas = new Datas(this.backupMethod, data.database);
         // Alert instance
-        this.alert = new Alert(this, data.database);
+        this.alert = new Alert(this);
 
         // Init game
         this.init();
@@ -49,10 +56,9 @@ export default class Memory {
   }
 
   /**
-   * Init game : create cards game
+   * Create cards game
    */
   init() {
-
     // Set cards values
     let n = 1;
     while (n < this.nbOccurences) {
@@ -79,24 +85,16 @@ export default class Memory {
    * Append cards into DOM
    */
   displayCards() {
-
     // Mix card game
     this.cards.sort(() => Math.random() - 0.5);
     
-    // Create li elements contains card's back and front
-    for (let i in this.cards) {
-      const card = this.cards[i],
-        liElmt = document.createElement('li'),
+    // Create cards elmt
+    for (let card of this.cards) {
+      const liElmt = document.createElement('li'),
         frontElmt = document.createElement('div'),
-        backElmt = document.createElement('div'),
-        self = this;
+        backElmt = document.createElement('div');
 
-      // Card properties
-      card.isFlipped = false;
-      card.isClickable = true;
-      card.isActive = true;
-
-      // Card css properties
+      // Card elmt properties
       liElmt.className = '';
       liElmt.classList.add('card');
       frontElmt.classList.add('card__front');
@@ -106,92 +104,91 @@ export default class Memory {
       // Show card's value in debug mode
       backElmt.innerHTML = this.debug ? `<span class="card__value">${card.value}</span>` : '';
 
-      // Append back and front to card element
+      // Append back and front to card elmt
       liElmt.append(backElmt, frontElmt);
 
       // Store liElemt in card object
       card.elmt = liElmt;
       
-      // On card click
-      liElmt.addEventListener('click', () => {
-        
-        card.isFlipped = true;
+      // On card elmt click
+      card.elmt.addEventListener('click', () => {
 
-        // Is card clickable ?
-        if (card.isClickable) {
-          // Disable clickable state
-          card.isClickable = false;
+        if (this.selectedCards.length !== this.nbOccurences) {
+
           // Flip card
-          liElmt.classList.add('card--flipped');
-          // Store card's value
-          self.selectedCards.push(card.value);
-          // If stored cards number === number cards to find
-          if (self.selectedCards.length === self.nbOccurences) {
-            // Compare selected cards
-            self.checkFlippedCards();
+          card.elmt.classList.add('card--flipped');
+
+          // Flipped card
+          card.isVisible = true;
+
+          // Add to selected cards
+          this.selectedCards.push(card.value);
+
+          // Compare returned cards
+          if (this.selectedCards.length === this.nbOccurences) {
+            this.checkFlippedCards();
           }
-          
-          return;
         }
-        
-        // Prevent click on the card
-        return false;
       });
 
       //Append card to list element
-      this.boardElmt.appendChild(liElmt);
+      this.boardElmt.appendChild(card.elmt);
     }
   }
   
   /**
    * Compare selected cards
-   * @returns {void}
    */
   checkFlippedCards() {
-    const self = this,
-      isSame = this.selectedCards[0] === this.selectedCards[1];
+    //Are the selected cards identical ?
+    const identical = this.selectedCards[0] === this.selectedCards[1];
     
-    // Disable active cards
-    for (let i in this.cards) {
-      const liElmt = Array.from(this.boardElmt.querySelectorAll('li'))[i];
+    for (let i = 0; i < this.cards.length; i ++) {
+      const card = this.cards[i];
+      
+      // If not returned and returnable, disable card
+      card.elmt.classList.toggle('card--disabled', card.isReturnable && (card.isVisible === false));
 
-      if (isSame && this.cards[i].isFlipped) {
-        this.cards[i].isActive = false;
-        liElmt.classList.add('card--blink');
-      } else if (this.cards[i].isActive && (this.cards[i].isFlipped === false)) {
-        liElmt.classList.add('card--disabled');
+      // If identical, blink card
+      card.elmt.classList.toggle('card--blink', identical && this.selectedCards.includes(card.value));
+
+      // If identical, add card to flipped cards
+      if (identical && this.selectedCards.includes(card.value)) {
+        this.flippedCards.push(card);
+        card.isReturnable = false;
+
+        continue;
+      }
+
+      // Visible card state
+      card.isVisible = false;
+
+      // Hide and enable card
+      if (card.isReturnable) {
+        const self = this;
+
+        setTimeout(() => {
+          card.elmt.classList.remove('card--flipped', 'card--disabled');
+        }, self.visibleDuration * 1000);
       }
     }
     
-    // if same cards
-    if (isSame) {
-      // update visible cards number
-      this.nbVisibleCards += this.selectedCards.length;
-    }
-    
-    // Empty selected cards
+    // Remove selected cards
     this.selectedCards = [];
-    
+
     // if all cards are visible
-    if (this.nbVisibleCards === this.cards.length) {
+    if (this.flippedCards.length === this.cards.length) {
       this.isWin = true;
+
       // game over
       this.gameOver();
       return;
     }
-
-    // Flip actives cards
-    setTimeout(() => {
-      for (let i in self.cards) {
-        if (self.cards[i].isActive) {
-          self.cards[i].isClickable = true;
-          self.cards[i].isFlipped = false;
-          Array.from(self.boardElmt.querySelectorAll('li'))[i].classList.remove('card--flipped', 'card--disabled');
-        }
-      }
-    }, self.visibleDuration * 1000);
   }
-
+  
+  /**
+   * Launch countdown
+   */
   launch() {
     const self = this;
     let countFrom = 3;
@@ -222,10 +219,9 @@ export default class Memory {
   }
 
   /**
-   * Play game
+   * Play start
    */
   play() {
-    console.log('play');
     const self = this;
 
     // Remove countdown
@@ -254,13 +250,6 @@ export default class Memory {
     
     // Stop counter
     this.counter.stop();
-    
-    // Disable click on active's cards
-    for (let i in this.cards) {
-      if (this.cards[i].isActive) {
-        this.cards[i].isClickable = false;
-      }
-    }
 
     // If player loose, display loose alert
     if (this.isWin === false) {

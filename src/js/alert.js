@@ -1,13 +1,14 @@
-import Datas from './datas.js';
-
+/**
+ * Alert module
+ * Display alerts and communicate with game and datas modules
+ */
 export default class Alert {
   
   /**
    * Init alert
-   * @param {Object} game Game instance
-   * @param {Object} database Database settings
+   * @param {Object} game Memory instance
    */
-  constructor(game, database) {
+  constructor(game) {
     // DOM elements
     this.overlayElmt = document.getElementById('overlay');
     this.alertElmt = document.getElementById('alert');
@@ -18,9 +19,9 @@ export default class Alert {
     this.game = game;
 
     // Datas instance
-    this.datas = new Datas(this.game.backupMethod, database);
+    this.datas = game.datas;
 
-    // If game ranking is enabled
+    // Set storage method
     const setDb = async () => {
       const createDatabase = await this.datas.createDatabase();
       
@@ -31,47 +32,47 @@ export default class Alert {
     };
     setDb();
     
-    // Define buttons
-    this.buttons = [
+    // Define buttons elements
+    this.buttonsElmts = [
       {action: 'Play', label: 'Jouer'},
       {action: 'Replay', label: 'Rejouer'},
       {action: 'Save', label: 'Enregistrer mon score'},
       {action: 'Cancel', label: 'Terminé'}
     ];
     
-    // Append buttons to DOM
-    for (let i in this.buttons) {
+    // Append buttons elements into DOM
+    for (let i in this.buttonsElmts) {
       const button = document.createElement('button');
 
       button.type = 'button';
-      button.textContent = this.buttons[i].label;
+      button.textContent = this.buttonsElmts[i].label;
       button.classList.add('hide', 'alert__button');
 
       this.footerElmt.appendChild(button);
       
-      this[`btn${this.buttons[i].action}`] = button;
+      this[`btn${this.buttonsElmts[i].action}`] = button;
     }
 
-    // Play when click on play button
+    // Play button onclick
     this.btnPlay.addEventListener('click', () => {
       this.hide();
 
       this.game.launch();
     });
 
-    // Replay when click on replay button
+    // Replay button onclick
     this.btnReplay.addEventListener('click', () => {
       this.hide();
 
       this.game.replay();
     });
 
-    // Cancel when click on cancel button
+    // Cancel button onclick
     this.btnCancel.addEventListener('click', () => {
       this.hide();
     });
 
-    // Save score when click on save button
+    // Save button onclick
     this.btnSave.addEventListener('click', () => {
 
       const playerName = this.bodyElmt.querySelector('input').value.trim(),
@@ -106,8 +107,8 @@ export default class Alert {
     this.alertElmt.classList.remove('alert--scores');
     this.bodyElmt.innerHTML = '';
 
-    for (let i in this.buttons) {
-      this[`btn${this.buttons[i].action}`].classList.add('hide');
+    for (let i in this.buttonsElmts) {
+      this[`btn${this.buttonsElmts[i].action}`].classList.add('hide');
     }
   }
 
@@ -122,10 +123,10 @@ export default class Alert {
 
   /**
    * On win
-   * @param {string} time Player formated score
    */
-  win(time) {
-    var content = `<p>Félicitations, vous avez gagné !<br>Votre temps est de <strong>${time}</strong>.</p>`;
+  win() {
+    const time = this.game.counter.secondsToMinutes(this.game.score);
+    let content = `<p>Félicitations, vous avez gagné !<br>Votre temps est de <strong>${time}</strong>.</p>`;
     
     // Get rank
     const getRank = async () => {
@@ -201,5 +202,4 @@ export default class Alert {
     };
     getRanking();
   }
-
 }

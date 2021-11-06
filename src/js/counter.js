@@ -1,3 +1,7 @@
+/**
+ * Counter module
+ * Manage elapsed time and game duration
+ */
 export default class Counter {
   
   /**

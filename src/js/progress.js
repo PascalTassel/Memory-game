@@ -1,10 +1,14 @@
+/**
+ * Progress module
+ * Manage progress bar
+ */
 export default class Progress {
   
   /**
    * Init progress bar
    */
   constructor() {
-    // DOM elements
+    // DOM element
     this.barElmt = document.getElementById('progress-bar');
   }
 

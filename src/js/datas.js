@@ -1,3 +1,7 @@
+/**
+ * Datas module
+ * Manage game datas with MySQL database or localStorage
+ */
 export default class Datas {
   
   /**
@@ -20,6 +24,7 @@ export default class Datas {
   /**
    * Create scores database
    * @param {number} elapsedTime
+   * @returns {boolean} Storage success or failed
    */
   createDatabase() {
     // Create database
@@ -58,6 +63,7 @@ export default class Datas {
   /**
    * Get player rank
    * @param {number} elapsedTime
+   * @returns {number} Player rank
    */
   getRank(elapsedTime) {
     if (this.backupMethod === 'database') {
@@ -99,6 +105,7 @@ export default class Datas {
 
   /**
    * Get highest scores
+   * @returns {array} Ranking
    */
   getRanking() {
     if (this.backupMethod === 'database') {
@@ -127,6 +134,7 @@ export default class Datas {
   /**
    * Set player score
    * @param {object} datas Datas game to store
+   * @returns {boolean} Save score success or failed
    */
   setScore(datas) {
     if (this.backupMethod === 'database') {
@@ -149,6 +157,7 @@ export default class Datas {
       ranking.push(datas);
 
       localStorage.setItem('memoryGame', JSON.stringify(ranking));
+      return true;
     }
   }
 }

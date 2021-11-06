@@ -1,3 +1,7 @@
+/**
+ * Card module
+ * A card of cards game
+ */
 export default class Card {
   
   /**
@@ -6,10 +10,13 @@ export default class Card {
    * @param {string} bgPosition Card background Position 
    */
   constructor(value, bgPosition) {
-    this.bgPosition = bgPosition;   // Card background-position;
-    this.value = value;             // Card value
-    this.isActive = true;           // Card state
-    this.isClickable = false;       // Clickable card state
-    this.isFlipped = false;         // Card flipped state
+    // Card background-position
+    this.bgPosition = bgPosition;
+    // Card value
+    this.value = value;
+    // Card visible state
+    this.isVisible = false;
+    // Card returnable state
+    this.isReturnable = true;
   }
 }
