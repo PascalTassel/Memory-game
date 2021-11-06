@@ -2,7 +2,7 @@
 
 ![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with PHP](https://img.shields.io/badge/Made%20with-PHP7-blue)
 
-Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML 5`, `CSS 3`, `JavaScript ES6` et `PHP 7`.
+Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML 5`, `CSS 3`, `JavaScript ES6` et une pincée de `PHP 7`.
 
 ## Prérequis
 
