@@ -1,6 +1,6 @@
 # Jeu de mémoire
 
-![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow)
+![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with PHP](https://img.shields.io/badge/Made%20with-PHP-blue)
 
 Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML5`, `CSS3` et `JavaScript ES6`.
 
@@ -44,5 +44,5 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | dbName    | string | Nom de la base de données, exemple : `"memory_game"`                                                         |
 | host      | string | Nom du serveur de base données, exemple : `"localhost"`                                                      |
 | password  | string | Mot de passe de connection à la base de donnée, exemple : `"/dist/im/cards.png"`                             |
-| tableName | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
-| userName  | string | Durée de visibilité d'une carte avant son retournement (entre `2` et `5`)                                    |
+| tableName | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
+| userName  | string | Nom d'utilisateur, exemple : `""`                                                                            |
