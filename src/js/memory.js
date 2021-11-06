@@ -46,7 +46,7 @@ export default class Memory {
         // Counter instance
         this.counter = new Counter(this.duration);
         // Datas instance
-        this.datas = new Datas(this.backupMethod, data.database);
+        this.datas = new Datas(this.backupMethod, this.rankingLimit, data.database);
         // Alert instance
         this.alert = new Alert(this);
 
@@ -347,6 +347,15 @@ export default class Memory {
           return false;
         }
         break;
+      case 'rankingLimit':
+        if (typeof settingValue !== 'number') {
+          console.error('rankingLimit setting is not a number.');
+          return false;
+        } else if (settingValue < 2 || settingValue > 11) {
+          console.error('rankingLimit setting must be between 2 and 10.');
+          return false;
+        }
+        break;
       default:
         console.error(`${setting} setting is not valid.`);
         return false;
@@ -390,15 +399,6 @@ export default class Memory {
         case 'password':
           if (typeof settingValue !== 'string') {
             console.error('host setting is not a string.');
-            return false;
-          }
-          break;
-        case 'rankingLimit':
-          if (typeof settingValue !== 'number') {
-            console.error('rankingLimit setting is not a number.');
-            return false;
-          } else if (settingValue < 2 || settingValue > 11) {
-            console.error('rankingLimit setting must be between 2 and 10.');
             return false;
           }
           break;

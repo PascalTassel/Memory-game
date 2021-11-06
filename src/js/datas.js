@@ -7,13 +7,16 @@ export default class Datas {
   /**
    * Init datas object
    * @param {string} backupMethod Database | localStorage
-   * @param {object} settings Ranking settings
+   * @param {object} rankingLimit Ranking limit
+   * @param {object} settings Database settings
    */
-  constructor (backupMethod, settings) {
+  constructor (backupMethod, rankingLimit, settings) {
     // Datas file
     this.endPoint = 'datas.php';
     // Backup Method
     this.backupMethod = backupMethod;
+    // Ranking Limit
+    this.rankingLimit = rankingLimit;
 
     // Set datas settings
     for (let setting in settings) {
