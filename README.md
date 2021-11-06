@@ -43,6 +43,6 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | :-------- | :----- | :----------------------------------------------------------------------------------------------------------- |
 | dbName    | string | Nom de la base de données, exemple : `"memory_game"`                                                         |
 | host      | string | Nom du serveur de base données, exemple : `"localhost"`                                                      |
-| password  | string | Mot de passe de connection à la base de donnée, exemple : `"/dist/im/cards.png"`                             |
+| password  | string | Mot de passe de connection à la base de donnée, exemple : `""`                                               |
 | tableName | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
-| userName  | string | Nom d'utilisateur, exemple : `""`                                                                            |
+| userName  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
