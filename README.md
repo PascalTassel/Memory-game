@@ -8,7 +8,7 @@ Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML 5`, `CSS 3`, `
 
 Par défaut, aucun prérequis technique n'est nécessaire pour jouer.
 
-Cependant, si le mode de sauvegarde des scores est défini sur `'database'` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores. `PHP 7` devra être également installé sur votre serveur afin que le fichier `/datas.php` puisse communiquer avec la base de donnée.
+Cependant, si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores. `PHP 7` devra être également installé sur votre serveur afin que le fichier `/datas.php` puisse communiquer avec la base de donnée.
 
 ## Règles du jeu
 
@@ -27,7 +27,7 @@ Le fichier `/settings.json`, situé à la racine du projet, permet de personnali
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
 | backupMethod    | string   | Mode de sauvegarde des scores : base de données MySql (`database`) ou en local (`localStorage`)              |
-| bgCardIncrement | int      | Incrémentation en `px` horizontale de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
+| bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
 | cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
 | debug           | boolean  | Affichage de la valeur des cartes                                                                            |
 | duration        | number   | Durée d'une partie, en secondes (entre `60` et `3599`)                                                       |
