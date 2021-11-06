@@ -4,6 +4,10 @@
 
 Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML 5`, `CSS 3`, `JavaScript ES6` et une pincée de `PHP 7`.
 
+## Screenshot
+
+![Screenshot](/screenshot.jpg)
+
 ## Prérequis
 
 Par défaut, aucun prérequis technique n'est nécessaire pour jouer.

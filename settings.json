@@ -1,6 +1,6 @@
 {
     "game": {
-        "debug": true,
+        "debug": false,
         "duration": 600,
         "bgCardIncrement": 100,
         "cardsValues": ["red apple", "banana", "orange", "green lemon", "pomegranate", "apricot", "yellow lemon", "strawberry", "green apple", "peach", "grapes", "watermelon", "plum", "pear", "red cherries", "raspberry", "mango", "yellow cherries"],
