@@ -333,11 +333,17 @@ export default class Memory {
         if (typeof settingValue !== 'number') {
           console.error('nbOccurences setting is not a number.');
           return false;
+        } else if (settingValue < 2 || settingValue > 3) {
+          console.error('rankingLimit setting must be 2 or 3.');
+          return false;
         }
         break;
       case 'visibleDuration':
         if (typeof settingValue !== 'number') {
           console.error('visibleDuration setting is not a number.');
+          return false;
+        } else if (settingValue < 2 || settingValue > 5) {
+          console.error('rankingLimit setting must be between 2 and 5.');
           return false;
         }
         break;
