@@ -48,4 +48,4 @@ Le fichier `/settings.json`, situé à la racine du projet, permet de personnali
 | userName  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
 
 
-:info: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
+:information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
