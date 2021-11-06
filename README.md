@@ -8,7 +8,7 @@ Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML5`, `CSS3` et `
 
 Par défaut, aucun prérequis technique n'est nécessaire pour jouer.
 
-Cependant, si le mode de sauvegarde des scores est défini sur `'database'` dans le fichier de configuration, vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores.
+Cependant, si le mode de sauvegarde des scores est défini sur `'database'` dans le [fichier de configuration](### Configuration du jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores.
 
 ## Règles du jeu
 
