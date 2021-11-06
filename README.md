@@ -22,11 +22,12 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 
 #### game
 
-| Paramètre        | Type           | Définition                                                                                                   |
-| backupMethod     | string         | Mode de sauveagarde des scores : base de données MySql (`database`) ou en local (`localStorage`)             |
-| bgCardIncrement  | int            | Incrémentation en `px` horizontale de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
-| cardsValues      | array          | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
-| debug            | boolean        | Affichage de la valeur des cartes                                                                            |
-| duration         | number         | Durée d'une partie, en secondes                                                                              |
-| nbOccurences     | number         | Nombre de cartes identiques                                                                                  |
-| visibleDuration  | number         | Durée de visibilité d'une carte avant son retournement                                                       |
+| Paramètre       | Type     | Définition                                                                                                   |
+| :-------------: | :------: | :----------------------------------------------------------------------------------------------------------: |
+| backupMethod    | string   | Mode de sauveagarde des scores : base de données MySql (`database`) ou en local (`localStorage`)             |
+| bgCardIncrement | int      | Incrémentation en `px` horizontale de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
+| cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
+| debug           | boolean  | Affichage de la valeur des cartes                                                                            |
+| duration        | number   | Durée d'une partie, en secondes                                                                              |
+| nbOccurences    | number   | Nombre de cartes identiques                                                                                  |
+| visibleDuration | number   | Durée de visibilité d'une carte avant son retournement                                                       |
