@@ -2,17 +2,21 @@
 
 ![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with PHP](https://img.shields.io/badge/Made%20with-PHP7-blue)
 
-Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML 5`, `CSS 3`, `JavaScript ES6` et une pincée de `PHP 7`.
+Bienvenue sur **Memory game**, un jeu de mémoire conçu en `HTML5`, `CSS3`, `JavaScript ES6` et une pincée de `PHP 7`.
 
 ## Screenshot
 
 ![Screenshot](/screenshot.jpg)
 
+## Lien
+
+Jouer en ligne : [https://pascaltassel.github.io/Memory-game/](https://pascaltassel.github.io/Memory-game/).
+
 ## Prérequis
 
 Par défaut, aucun prérequis technique n'est nécessaire pour jouer.
 
-Cependant, si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores. `PHP 7` devra être également installé sur votre serveur afin que le fichier `/datas.php` puisse communiquer avec la base de donnée.
+Cependant, si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores. `PHP` dans sa version `7` au minimum, devra également être disponible sur votre serveur afin que le fichier `/datas.php` puisse communiquer avec la base de donnée.
 
 ## Règles du jeu
 
