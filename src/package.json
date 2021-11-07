@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/PascalTassel/Memory-game"
   },
+  "homepage": "https://github.com/PascalTassel/Memory-game#readme",
   "keywords": ["Game", "JavaScript", "ES6"],
   "author": "Pascal Tassel",
   "license": "ISC",
