@@ -151,10 +151,11 @@ export default class Datas {
         });
     } else {
       const ranking = JSON.parse(localStorage.getItem('memoryGame')),
-        currentdate = new Date(),
-        dateEn = currentdate.toISOString().substr(0, 10);
+        currentDate = new Date(),
+        locale = Intl.DateTimeFormat().resolvedOptions(),
+        dateString = currentDate.toISOString().substr(0, 10).split('-');
 
-      datas.date = `${dateEn.split('-')[2]}-${dateEn.split('-')[1]}-${dateEn.split('-')[0]} ${currentdate.toISOString().substr(11, 8)}`;
+      datas.date = `${dateString[2]}-${dateString[1]}-${dateString[0]} ${currentDate.toLocaleTimeString(locale)}`;
       datas.player = datas.player.trim() === '' ? '-' : datas.player.trim();
       
       ranking.push(datas);
