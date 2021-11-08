@@ -1,3 +1,4 @@
+.eslintrc
 dist/mix-manifest.json
 src/node_modules/
 src/mix-manifest.json
