@@ -46,7 +46,7 @@ export default class Memory {
   }
 
   /**
-   * Create cards game
+   * Init properties and create cards game
    */
   init() {
     // Cards game
