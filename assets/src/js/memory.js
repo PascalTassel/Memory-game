@@ -134,7 +134,7 @@ export default class Memory {
         }
       });
 
-      //Append card to list element
+      // Append card to list element
       this.boardElmt.appendChild(card.elmt);
     }
   }
@@ -143,7 +143,7 @@ export default class Memory {
    * Compare selected cards
    */
   checkFlippedCards() {
-    //Are the selected cards identical ?
+    // Are the selected cards identical ?
     const identical = this.selectedCards[0] === this.selectedCards[1];
     
     for (let i = 0; i < this.cards.length; i ++) {
