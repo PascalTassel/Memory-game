@@ -30,11 +30,11 @@ Port du serveur : **3000**.
 
 Si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection au serveur de bases de données `MySQL`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores.
 
-### Configuration du jeu
+## Configuration du jeu
 
 Le fichier `settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres relatifs au jeu et au mode de sauvegarde des scores.
 
-#### game
+### game
 
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | rankingLimit    | number   | Nombre de scores sauvegardés (entre `2` et `10`)                                                             |
 | visibleDuration | number   | Durée de visibilité d'une carte avant son retournement (entre `2` et `5`)                                    |
 
-#### database
+### database
 
 :warning: Si le paramètre `game.backupMethod` est défini sur `database`, les paramètres ci-dessous devront être obligatoirement renseignés.
 
@@ -61,3 +61,14 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 
 
 :information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
+
+### Compilation des fichiers statiques
+
+Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par compilation des fichiers présents dans le dossier `assets/src`, à l'aide du bundle `webpack.mix.js`.
+
+Pour lancer la compilation depuis la racine du projet, exécuter les commandes suivantes :
+
+```javascript
+cd assets/src
+npm run production
+```
