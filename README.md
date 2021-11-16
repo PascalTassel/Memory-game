@@ -1,22 +1,12 @@
 # Jeu de mémoire
 
-![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with PHP](https://img.shields.io/badge/Made%20with-PHP7-blue)
+ ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange)
 
-**Memory game**, un jeu de mémoire conçu en `HTML5`, `CSS3`, `JavaScript ES6` et une pincée de `PHP 7`.
+**Memory game**, un jeu de mémoire conçu en `JavaScript ES6`, `CSS3` et `HTML5`.
 
 ## Screenshot
 
 ![Screenshot](/screenshot.jpg)
-
-## Lien
-
-Jouer en ligne : [https://pascaltassel.github.io/Memory-game/](https://pascaltassel.github.io/Memory-game/).
-
-## Prérequis
-
-Par défaut, aucun prérequis technique n'est nécessaire pour jouer.
-
-Cependant, si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection à une base de données `MySql`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores. `PHP` dans sa version `7` au minimum, devra également être disponible sur votre serveur afin que le fichier `/datas.php` puisse communiquer avec la base de donnée.
 
 ## Règles du jeu
 
@@ -26,15 +16,29 @@ Avant le début du jeu, les cartes sont mélangées puis retounées. Lorsque le 
 
 La partie est gagnée lorsque toutes les paires de cartes ont été découvertes dans le temps imparti. En fonction de votre résultat, le jeu vous propose de sauvegarder votre score afin qu'il apparaisse dans le tableau des meilleurs scores affiché en début de partie.
 
+## Jouer en ligne
+
+[https://pascaltassel.github.io/Memory-game/](https://pascaltassel.github.io/Memory-game/).
+
+Dans la version en ligne, les scores sont sauvegardés dans le navigateur, à l'aide de l'objet `localStorage`.
+
+## Jouer en local
+
+Développé avec node **12.18.4** et **npm 8.1.3**.
+
+Port du serveur : **3000**.
+
+Si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection au serveur de bases de données `MySQL`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores.
+
 ### Configuration du jeu
 
-Le fichier `/settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres relatifs au jeu et au mode de sauvegarde des scores.
+Le fichier `settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres relatifs au jeu et au mode de sauvegarde des scores.
 
 #### game
 
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
-| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySql (`database`) ou en local (`localStorage`)              |
+| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur (`localStorage`)              |
 | bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
 | cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
 | debug           | boolean  | Affichage de la valeur des cartes                                                                            |
@@ -49,11 +53,11 @@ Le fichier `/settings.json`, situé à la racine du projet, permet de personnali
 
 | Paramètre | Type   | Définition                                                                                                   |
 | :-------- | :----- | :----------------------------------------------------------------------------------------------------------- |
-| dbName    | string | Nom de la base de données, exemple : `"memory_game"`                                                         |
+| database    | string | Nom de la base de données, exemple : `"memory_game"`                                                         |
 | host      | string | Nom du serveur de base données, exemple : `"localhost"`                                                      |
 | password  | string | Mot de passe de connection à la base de donnée, exemple : `""`                                               |
-| tableName | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
-| userName  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
+| table | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
+| user  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
 
 
 :information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.

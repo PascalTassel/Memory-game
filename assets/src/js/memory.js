@@ -30,17 +30,7 @@ export default class Memory {
         this.boardElmt = document.getElementById('cards');
         this.countDownElmt = document.getElementById('countdown');
         this.countDownValueElmt = document.getElementById('countdown-value');
-    
-        // Cards game
-        this.cards = [];
-        // Current selected cards
-        this.selectedCards = [];
-        // Flipped cards
-        this.flippedCards = [];
-        // Game status
-        this.isWin = false;
-        // Player score
-        this.score = 0;
+
         // Progress bar instance
         this.progress = new Progress();
         // Counter instance
@@ -59,16 +49,29 @@ export default class Memory {
    * Create cards game
    */
   init() {
+    // Cards game
+    this.cards = [];
+    // Current selected cards
+    this.selectedCards = [];
+    // Flipped cards
+    this.flippedCards = [];
+    // Game status
+    this.isWin = false;
+    // Player score
+    this.score = 0;
+    // Cards values
+    let cardsValues = this.cardsValues;
+
     // Set cards values
     let n = 1;
     while (n < this.nbOccurences) {
-      this.cardsValues = this.cardsValues.concat(this.cardsValues);
+      cardsValues = cardsValues.concat(cardsValues);
       n ++;
     }
     
     // Add cards to cards game
-    for (let i = 0; i < this.cardsValues.length; i ++) {
-      const value = this.cardsValues[i],
+    for (let i = 0; i < cardsValues.length; i ++) {
+      const value = cardsValues[i],
         bgPosition = `0px ${((this.bgCardIncrement * -1) * i)}px`,
         // Card instance
         card = new Card(value, bgPosition);
@@ -271,6 +274,7 @@ export default class Memory {
    * Play again
    */
   replay() {
+    // Remove cards
     this.boardElmt.innerHTML = '';
 
     // Reset counter
@@ -279,11 +283,8 @@ export default class Memory {
     // Reset progress bar
     this.progress.reset();
     
-    // Display cards
-    this.displayCards();
-
-    // Reset nb Visible cards
-    this.nbVisibleCards = 0;
+    // Cards game
+    this.init();
 
     // Launch game
     this.launch();
@@ -384,21 +385,21 @@ export default class Memory {
             return false;
           }
           break;
-        case 'dbName':
+        case 'database':
           if (typeof settingValue !== 'string') {
-            console.error('dbName setting is not a string.');
+            console.error('database setting is not a string.');
             return false;
           }
           break;
-        case 'tableName':
+        case 'table':
           if (typeof settingValue !== 'string') {
-            console.error('tableName setting is not a string.');
+            console.error('table setting is not a string.');
             return false;
           }
           break;
-        case 'userName':
+        case 'user':
           if (typeof settingValue !== 'string') {
-            console.error('userName setting is not a string.');
+            console.error('user setting is not a string.');
             return false;
           }
           break;

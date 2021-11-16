@@ -11,9 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('../dist/')
-  .js('js/index.js', 'js/memory.js')
-  .sass('scss/memory.scss', 'css')
+mix
+  .js('assets/src/js/index.js', 'assets/js/memory.js')
+  .sass('assets/src/scss/memory.scss', 'assets/css/memory.css')
   .options({
     processCssUrls: false,
     cssNano: {

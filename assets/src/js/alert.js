@@ -77,7 +77,7 @@ export default class Alert {
 
       const playerName = this.bodyElmt.querySelector('input').value.trim(),
         datas = {
-          player: playerName,
+          player: playerName === '' ? '-' : playerName,
           score: this.game.score
         };
 
@@ -173,15 +173,20 @@ export default class Alert {
             <tbody>`;
         
           ranking.forEach( (party, i) => {
-            const position = String(i + 1).padStart(2, 0);
+            // Position and date format
+            const position = String(i + 1).padStart(2, 0),
+              date = party.date.split(' '),
+              dateFr = `${date[0].split('-')[2]}-${date[0].split('-')[1]}-${date[0].split('-')[0]}`,
+              time = date[1];
+
             content  += `
                 <tr>
                   <td class="rank">${position}</td>
                   <td class="player">
                     <strong>${party.player === null ? '-' : party.player}</strong>
-                    <span class="hide-md"><br>${party.date.split(' ')[0]} <small>${party.date.split(' ')[1]}</small></span>
+                    <span class="hide-md"><br>${dateFr} <small>${time}</small></span>
                   </td>
-                  <td class="date show-md">${party.date.split(' ')[0]} <small>${party.date.split(' ')[1]}</small></td>
+                  <td class="date show-md">${dateFr} <small>${time}</small></td>
                   <td class="time"><strong>${this.game.counter.secondsToMinutes(party.score)}</strong></td>
                 </tr>`;
           });

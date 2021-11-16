@@ -12,16 +12,13 @@ export default class Datas {
    */
   constructor (backupMethod, rankingLimit, settings) {
     // Datas file
-    this.endPoint = 'datas.php';
+    this.endPoint = 'data';
     // Backup Method
     this.backupMethod = backupMethod;
     // Ranking Limit
     this.rankingLimit = rankingLimit;
-
-    // Set datas settings
-    for (let setting in settings) {
-      this[setting] = settings[setting];
-    }
+    // Database settings
+    this.database = settings;
   }
 
   /**
@@ -32,21 +29,18 @@ export default class Datas {
   createDatabase() {
     // Create database
     if (this.backupMethod === 'database') {
-      return fetch(`${this.endPoint}?setDb`, {
+      return fetch(`${this.endPoint}/setDb`, {
         method: 'POST',
-        mode: 'same-origin',
-        cache: 'no-cache',
-        credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
+        body: this.formUrlEncoder(this.database)
       })
         .then((response) => response.json())
         .then((responseData) => {
           
-          if (responseData.success === false) {
-            throw new Error('Impossible de créer la base de données');
+          if (responseData.error) {
+            throw new Error(responseData.error);
           }
 
           return responseData.success;
@@ -64,22 +58,42 @@ export default class Datas {
   }
 
   /**
+   * Get highest scores
+   * @returns {array} Ranking
+   */
+  getRanking() {
+    if (this.backupMethod === 'database') {
+      return fetch(`${this.endPoint}/getRanking`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: this.formUrlEncoder({limit: this.rankingLimit})
+      })
+        .then((response) => response.json())
+        .then((responseData) => {
+          return responseData.ranking;
+        });
+    } else {
+      let ranking = JSON.parse(localStorage.getItem('memoryGame'));
+      ranking.sort((a,b) => (a.score > b.score) ? 1 : ((b.score > a.score) ? -1 : 0));
+      return ranking;
+    }
+  }
+
+  /**
    * Get player rank
    * @param {number} elapsedTime
    * @returns {number} Player rank
    */
   getRank(elapsedTime) {
     if (this.backupMethod === 'database') {
-      return fetch(`${this.endPoint}?getRank`, {
+      return fetch(`${this.endPoint}/getRank`, {
         method: 'POST',
-        mode: 'same-origin',
-        cache: 'no-cache',
-        credentials: 'same-origin',
         headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
-        body: JSON.stringify({score: elapsedTime})
+        body: this.formUrlEncoder({score: elapsedTime})
       })
         .then((response) => response.json())
         .then((responseData) => {
@@ -107,61 +121,54 @@ export default class Datas {
   }
 
   /**
-   * Get highest scores
-   * @returns {array} Ranking
-   */
-  getRanking() {
-    if (this.backupMethod === 'database') {
-      return fetch(`${this.endPoint}?getRanking`, {
-        method: 'POST',
-        mode: 'same-origin',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({limit: this.rankingLimit})
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          return responseData.ranking;
-        });
-    } else {
-      let ranking = JSON.parse(localStorage.getItem('memoryGame'));
-      ranking.sort((a,b) => (a.score > b.score) ? 1 : ((b.score > a.score) ? -1 : 0));
-      return ranking;
-    }
-  }
-
-  /**
    * Set player score
    * @param {object} datas Datas game to store
    * @returns {boolean} Save score success or failed
    */
   setScore(datas) {
+    // Current date and local time
+    const currentDate = new Date(),
+      locale = Intl.DateTimeFormat().resolvedOptions(),
+      dateString = currentDate.toISOString().substr(0, 10).split('-');
+
+    datas.date = `${dateString[0]}-${dateString[1]}-${dateString[2]} ${currentDate.toLocaleTimeString(locale)}`;
+
     if (this.backupMethod === 'database') {
-      return fetch('datas.php?setScore', {
+      return fetch(`${this.endPoint}/setScore`, {
         method: 'POST',
-        body: JSON.stringify(datas)
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: this.formUrlEncoder(datas)
       })
         .then((response) => response.json())
         .then((responseData) => {
+
+          if (responseData.error) {
+            throw new Error(responseData.error);
+          }
+
           return responseData.success;
         });
     } else {
-      const ranking = JSON.parse(localStorage.getItem('memoryGame')),
-        currentDate = new Date(),
-        locale = Intl.DateTimeFormat().resolvedOptions(),
-        dateString = currentDate.toISOString().substr(0, 10).split('-');
-
-      datas.date = `${dateString[2]}-${dateString[1]}-${dateString[0]} ${currentDate.toLocaleTimeString(locale)}`;
-      datas.player = datas.player.trim() === '' ? '-' : datas.player.trim();
+      const ranking = JSON.parse(localStorage.getItem('memoryGame'));
       
       ranking.push(datas);
 
       localStorage.setItem('memoryGame', JSON.stringify(ranking));
       return true;
     }
+  }
+
+  formUrlEncoder(params) {
+    const formUrlBody = [];
+
+    for (let property in params) {
+      const key = encodeURIComponent(property);
+      const value = encodeURIComponent(params[property]);
+      formUrlBody.push(`${key}=${value}`);
+    }
+
+    return formUrlBody.join('&');
   }
 }

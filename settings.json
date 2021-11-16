@@ -1,6 +1,6 @@
 {
     "game": {
-        "debug": false,
+        "debug": true,
         "duration": 600,
         "bgCardIncrement": 100,
         "cardsValues": ["red apple", "banana", "orange", "green lemon", "pomegranate", "apricot", "yellow lemon", "strawberry", "green apple", "peach", "grapes", "watermelon", "plum", "pear", "red cherries", "raspberry", "mango", "yellow cherries"],
@@ -11,9 +11,9 @@
     },
     "database": {
         "host": "localhost",
-        "dbName": "memory_game",
-        "tableName": "scores",
-        "userName": "root",
+        "database": "memory_game",
+        "table": "scores",
+        "user": "root",
         "password": ""
     }
 }
