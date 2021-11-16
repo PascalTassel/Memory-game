@@ -4,6 +4,12 @@
 
 **Memory game**, un jeu de mémoire conçu en `JavaScript ES6`, `CSS3` et `HTML5`.
 
+Développement backend avec **Node.js** et les modules suivants :
+
+- `express` pour le serveur
+- `ejs` pour le templating
+- `mysql` pour la gestion des données
+
 ## Screenshot
 
 ![Screenshot](/screenshot.jpg)
