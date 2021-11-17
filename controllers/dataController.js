@@ -1,23 +1,20 @@
+// Required module
 const mysql = require('mysql');
 
 const data = {
-  connection: {},
-  table: null,
+  // Connection settings
+  connection: {
+    host     : process.env.HOST,
+    user     : process.env.USER,
+    password : process.env.PASSWORD,
+    database : process.env.DATABASE
+  },
+  // Table name
+  table: process.env.TABLE,
   /**
    * Create database and table if not exists
    */
-  setDb: (request, response) => {
-    // Connection settings
-    data.connection = {
-      host     : request.body.host,
-      user     : request.body.user,
-      password : request.body.password,
-      database : request.body.database
-    };
-
-    // Table name
-    data.table = request.body.table;
-
+  setDb: (_, response) => {
     // Create pool (for multiples queries)
     const pool  = mysql.createPool({
       host     : data.connection.host,
