@@ -30,7 +30,7 @@ La partie est gagnée lorsque toutes les paires de cartes ont été découvertes
 
 ## Jouer en local
 
-Port su serveur local : **3000**.
+Port du serveur local : **3000**.
 
 Testé avec les versions suivantes :
 
