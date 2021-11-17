@@ -50,6 +50,7 @@ TABLE=scores
 USER=root
 PASSWORD=
 ```
+:information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
 
 ## Configuration du jeu
 
@@ -57,8 +58,7 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
-| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur.
-:information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.(`localStorage`)              |
+| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur (`localStorage`).   |
 | bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
 | cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
 | debug           | boolean  | Affichage de la valeur des cartes                                                                            |
