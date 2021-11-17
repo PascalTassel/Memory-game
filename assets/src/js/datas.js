@@ -70,7 +70,7 @@ export default class Datas {
     } else {
       let ranking = JSON.parse(localStorage.getItem('memoryGame'));
       ranking.sort((a,b) => (a.score > b.score) ? 1 : ((b.score > a.score) ? -1 : 0));
-      return ranking;
+      return ranking.slice(0, this.rankingLimit);
     }
   }
 
