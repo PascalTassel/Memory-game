@@ -1,14 +1,14 @@
 # Jeu de mémoire
 
- ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange)
+ ![Made with Node.js](https://img.shields.io/badge/Made%20with-Node.js-green) ![Made with ES6](https://img.shields.io/badge/Made%20with-ES6-yellow) ![Made with CSS3](https://img.shields.io/badge/Made%20with-CSS3-blue) ![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-orange)
 
-**Memory game**, un jeu de mémoire conçu en `JavaScript ES6`, `CSS3` et `HTML5`.
+**Memory game**, un jeu de mémoire conçu avec `JavaScript ES6`, `CSS3`, `HTML5` côté front, et `Node.js` côté back.
 
-Développement backend avec **Node.js** et les modules suivants :
+Principaux modules `npm` utilisés côté back :
 
 - `express` pour le serveur
-- `ejs` pour le templating
 - `mysql` pour la gestion des données
+- `ejs` pour le templating
 
 ## Screenshot
 
@@ -30,21 +30,35 @@ Dans la version en ligne, les scores sont sauvegardés dans le navigateur, à l'
 
 ## Jouer en local
 
-Développé avec node **12.18.4** et **npm 8.1.3**.
+Testé avec les versions suivantes :
 
-Port du serveur : **3000**.
+- node **12.18.4**
+- npm **8.1.3**
+- apache **2.4.46**
+- MySQL **5.7.31**
 
-Si le mode de sauvegarde des scores est défini sur `"database"` dans le [fichier de configuration](#Configuration-du-jeu), vous devrez renseigner les informations de connection au serveur de bases de données `MySQL`, afin que le programme puisse créer une base de données et une table dans laquelle seront sauvegardés les scores.
+### Variables d'environnement
+
+Les variables d'environnement sont définies dans le fichier `.env` :
+
+```
+PORT=3000
+# database settings
+HOST=localhost
+DATABASE=memory_game
+TABLE=scores
+USER=root
+PASSWORD=
+```
 
 ## Configuration du jeu
 
-Le fichier `settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres relatifs au jeu et au mode de sauvegarde des scores.
-
-### game
+Le fichier `settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres du jeu et le mode de sauvegarde des scores.
 
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
-| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur (`localStorage`)              |
+| backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur.
+:information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.(`localStorage`)              |
 | bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`/dist/im/cards.png`)               |
 | cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/dist/im/cards.png`) |
 | debug           | boolean  | Affichage de la valeur des cartes                                                                            |
@@ -53,26 +67,11 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | rankingLimit    | number   | Nombre de scores sauvegardés (entre `2` et `10`)                                                             |
 | visibleDuration | number   | Durée de visibilité d'une carte avant son retournement (entre `2` et `5`)                                    |
 
-### database
-
-:warning: Si le paramètre `game.backupMethod` est défini sur `database`, les paramètres ci-dessous devront être obligatoirement renseignés.
-
-| Paramètre | Type   | Définition                                                                                                   |
-| :-------- | :----- | :----------------------------------------------------------------------------------------------------------- |
-| database    | string | Nom de la base de données, exemple : `"memory_game"`                                                         |
-| host      | string | Nom du serveur de base données, exemple : `"localhost"`                                                      |
-| password  | string | Mot de passe de connection à la base de donnée, exemple : `""`                                               |
-| table | string | Nom de la table dédiée à l'enregistrement des scores, exemple : `"scores"`                                   |
-| user  | string | Nom d'utilisateur, exemple : `"root"`                                                                        |
-
-
-:information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
-
 ### Compilation des fichiers statiques
 
-Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par compilation des fichiers présents dans le dossier `assets/src`, à l'aide du bundle `webpack.mix.js`.
+Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par compilation des fichiers `.scss` et `.js` enregistrés dans le dossier `assets/src`.
 
-Pour lancer la compilation depuis la racine du projet, exécuter les commandes suivantes :
+Pour lancer la compilation en mode `dev` ou `production` des fichiers statiques à partir du bundle `webpack.mix.js`, exécuter les commandes suivantes depuis la racine du projet :
 
 ```javascript
 cd assets/src
