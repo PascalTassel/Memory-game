@@ -76,6 +76,7 @@ Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par c
 Pour lancer la compilation en mode `dev` ou `production` des fichiers statiques à partir du bundle `webpack.mix.js`, exécuter les commandes suivantes depuis la racine du projet :
 
 ```javascript
+npm install
 cd assets/src
 npm run production
 ```
