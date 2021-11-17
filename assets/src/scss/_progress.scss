@@ -9,14 +9,14 @@
 
 .progress__bar {
   display: block;
-  width: 0%;
   height: 100%;
-  background-color: $progress-bar-bg-color;
-  background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
-  background-size: 10px 10px;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent), 
+                    linear-gradient(90deg, rgba(0,191,0,1) 0%, rgba(255,192,0,1) 50%, rgba(199,0,0,1) 100%);
+  background-size: 10px 10px, 100%;
   box-shadow: $progress-box-shadow;
+  clip-path: inset(0 100% 0 0);
 
   &[style] {
-    transition: width linear 1000ms;
+    transition: clip-path linear 1000ms;
   }
 }

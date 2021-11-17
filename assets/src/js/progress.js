@@ -17,7 +17,7 @@ export default class Progress {
    * @param {string} width Progress bar width
    */
   move(width) {
-    this.barElmt.style.width = `${width}%`;
+    this.barElmt.style.clipPath = `inset(0 ${100 - width}% 0 0)`;
   }
 
   /**
