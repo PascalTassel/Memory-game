@@ -16,7 +16,7 @@ router.get('/settings.json', (_, response) => {
 });
 
 // Data
-router.post('/data/setDb', dataController.setDb);
+router.get('/data/setDb', dataController.setDb);
 router.post('/data/getRanking', dataController.getRanking);
 router.post('/data/getRank', dataController.getRank);
 router.post('/data/setScore', dataController.setScore);
