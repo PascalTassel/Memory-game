@@ -24,9 +24,9 @@ La partie est gagnée lorsque toutes les paires de cartes ont été découvertes
 
 ## Jouer en ligne
 
-[https://pascaltassel.github.io/Memory-game/](https://pascaltassel.github.io/Memory-game/).
+[https://pascaltassel.github.io/Memory-game/](https://pascaltassel.github.io/Memory-game/)
 
-Dans la version en ligne, les scores sont sauvegardés dans le navigateur, à l'aide de l'objet `localStorage`.
+:information_source: Dans la version en ligne, les scores sont sauvegardés dans le navigateur, à l'aide de l'objet `localStorage`.
 
 ## Jouer en local
 
