@@ -34,9 +34,9 @@ export default class Memory {
         // Progress bar instance
         this.progress = new Progress();
         // Counter instance
-        this.counter = new Counter(this.duration);
+        this.counter = new Counter(this);
         // Datas instance
-        this.datas = new Datas(this.backupMethod, this.rankingLimit, data.database);
+        this.datas = new Datas(this.backupMethod, this.rankingLimit);
         // Alert instance
         this.alert = new Alert(this);
 
@@ -49,6 +49,8 @@ export default class Memory {
    * Init properties and create cards game
    */
   init() {
+    // Ended game
+    this.ended = false;
     // Cards game
     this.cards = [];
     // Current selected cards
@@ -115,6 +117,11 @@ export default class Memory {
       
       // On card elmt click
       card.elmt.addEventListener('click', () => {
+
+        // Ended game ?
+        if (this.ended) {
+          return false;
+        }
 
         if (this.selectedCards.length !== this.nbOccurences) {
 
@@ -225,34 +232,22 @@ export default class Memory {
    * Play start
    */
   play() {
-    const self = this;
-
     // Remove countdown
     clearInterval(this.countDown);
 
     // Launch counter
     this.counter.start();
-    
-    // Check counter
-    this.checkCounter = setInterval(() => {
-      if (self.counter.elapsedTime === self.duration) {
-        self.gameOver();
-      }
-      // Progress width
-      const width = ((self.counter.elapsedTime + 1) / self.duration) * 100;
-      self.progress.move(width);
-    }, 1000);
   }
 
   /**
    * Game stop
    */
   gameOver() {
-    // Remove counter checking
-    clearInterval(this.checkCounter);
-    
     // Stop counter
     this.counter.stop();
+
+    // Ended game
+    this.ended = true;
 
     // If player loose, display loose alert
     if (this.isWin === false) {
@@ -297,9 +292,9 @@ export default class Memory {
    */
   checkSettings(settings) {
     // Set game settings
-    for (let setting in settings.game) {
+    for (let setting in settings) {
       // Get setting value
-      const settingValue = settings.game[setting];
+      const settingValue = settings[setting];
 
       // Value integrity
       switch(setting) {
@@ -369,51 +364,6 @@ export default class Memory {
       }
 
       this[setting] = settingValue;
-    }
-
-    // Database settings integrity
-    if (this.backupMethod === 'database') {
-      for (let setting in settings.database) {
-        // Get setting value
-        const settingValue = settings.database[setting];
-
-        // Value integrity
-        switch(setting) {
-        case 'host':
-          if (typeof settingValue !== 'string') {
-            console.error('host setting is not a string.');
-            return false;
-          }
-          break;
-        case 'database':
-          if (typeof settingValue !== 'string') {
-            console.error('database setting is not a string.');
-            return false;
-          }
-          break;
-        case 'table':
-          if (typeof settingValue !== 'string') {
-            console.error('table setting is not a string.');
-            return false;
-          }
-          break;
-        case 'user':
-          if (typeof settingValue !== 'string') {
-            console.error('user setting is not a string.');
-            return false;
-          }
-          break;
-        case 'password':
-          if (typeof settingValue !== 'string') {
-            console.error('host setting is not a string.');
-            return false;
-          }
-          break;
-        default:
-          console.error(`${setting} setting is not valid.`);
-          return false;
-        }
-      }
     }
 
     return true;

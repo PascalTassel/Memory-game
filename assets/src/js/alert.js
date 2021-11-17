@@ -6,7 +6,7 @@ export default class Alert {
   
   /**
    * Init alert
-   * @param {Object} game Memory instance
+   * @param {Object} game Game instance
    */
   constructor(game) {
     // DOM elements

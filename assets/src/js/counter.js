@@ -6,18 +6,21 @@ export default class Counter {
   
   /**
    * Init counter
-   * @param {Number} duration Time duration in seconds
+   * @param {object} game Game instance
    */
-  constructor(duration) {
+  constructor(game) {
     // DOM elements
     this.countUpElmt = document.getElementById('count-up');
     this.durationElmt = document.getElementById('duration');
+
+    // Game instance
+    this.game = game;
 
     // Elapsed time
     this.elapsedTime =  0;
 
     // Display max duration
-    this.durationElmt.innerHTML = this.secondsToMinutes(duration);
+    this.durationElmt.innerHTML = this.secondsToMinutes(game.duration);
   }
 
   /**
@@ -45,7 +48,17 @@ export default class Counter {
       // Display count up
       this.countUpElmt.innerHTML = new Date(diffTime).toISOString().substr(14, 5);
 
+      // Progress width
+      const width = ((self.elapsedTime + 1) / self.game.duration) * 100;
+      self.game.progress.move(width);
+
+      // Check counter
+      if (self.elapsedTime === self.game.duration) {
+        self.game.gameOver();
+      }
+
       self.elapsedTime ++;
+
     }, 1000);
   }
   

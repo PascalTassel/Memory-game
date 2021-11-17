@@ -8,17 +8,14 @@ export default class Datas {
    * Init datas object
    * @param {string} backupMethod Database | localStorage
    * @param {object} rankingLimit Ranking limit
-   * @param {object} settings Database settings
    */
-  constructor (backupMethod, rankingLimit, settings) {
+  constructor (backupMethod, rankingLimit) {
     // Datas file
     this.endPoint = 'data';
     // Backup Method
     this.backupMethod = backupMethod;
     // Ranking Limit
     this.rankingLimit = rankingLimit;
-    // Database settings
-    this.database = settings;
   }
 
   /**
@@ -30,11 +27,7 @@ export default class Datas {
     // Create database
     if (this.backupMethod === 'database') {
       return fetch(`${this.endPoint}/setDb`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        body: this.formUrlEncoder(this.database)
+        method: 'GET'
       })
         .then((response) => response.json())
         .then((responseData) => {
