@@ -1,19 +1,10 @@
 {
-    "game": {
-        "debug": false,
-        "duration": 600,
-        "bgCardIncrement": 100,
-        "cardsValues": ["red apple", "banana", "orange", "green lemon", "pomegranate", "apricot", "yellow lemon", "strawberry", "green apple", "peach", "grapes", "watermelon", "plum", "pear", "red cherries", "raspberry", "mango", "yellow cherries"],
-        "nbOccurences": 2,
-        "visibleDuration": 2,
-        "backupMethod": "localStorage",
-        "rankingLimit": 5
-    },
-    "database": {
-        "host": "localhost",
-        "database": "memory_game",
-        "table": "scores",
-        "user": "root",
-        "password": ""
-    }
+    "debug": false,
+    "duration": 600,
+    "bgCardIncrement": 100,
+    "cardsValues": ["red apple", "banana", "orange", "green lemon", "pomegranate", "apricot", "yellow lemon", "strawberry", "green apple", "peach", "grapes", "watermelon", "plum", "pear", "red cherries", "raspberry", "mango", "yellow cherries"],
+    "nbOccurences": 2,
+    "visibleDuration": 2,
+    "backupMethod": "database",
+    "rankingLimit": 5
 }
