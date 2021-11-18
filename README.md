@@ -72,8 +72,8 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | Paramètre       | Type     | Définition                                                                                                   |
 | :-------------- | :------- | :----------------------------------------------------------------------------------------------------------- |
 | backupMethod    | string   | Mode de sauvegarde des scores : base de données MySQL (`database`) ou dans le navigateur (`localStorage`).   |
-| bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`/assets/im/cards.png`)               |
-| cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`/assets/im/cards.png`) |
+| bgCardIncrement | int      | Incrémentation horizontale en `px` de l'image d'arrière-plan des cartes (`assets/im/cards.png`)               |
+| cardsValues     | array    | Tableau de la valeur des cartes (défini dans le même ordre que le sprite d'arrière-plan`assets/im/cards.png`) |
 | debug           | boolean  | Affichage de la valeur des cartes                                                                            |
 | duration        | number   | Durée d'une partie, en secondes (entre `60` et `3599`)                                                       |
 | nbOccurences    | number   | Nombre de cartes identiques (`2` ou `3`)                                                                     |
