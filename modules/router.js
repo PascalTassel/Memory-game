@@ -27,6 +27,6 @@ router.get('/assets/:dir/:file?', (request, response) => {
 router.get('/data/setDb', dataController.setDb);
 router.post('/data/getRanking', dataController.getRanking);
 router.post('/data/getRank', dataController.getRank);
-router.post('/data/setScore', dataController.setScore);
+router.post('/data/saveScore', dataController.saveScore);
 
 module.exports = router;
