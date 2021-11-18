@@ -53,6 +53,18 @@ PASSWORD=
 ```
 :information_source: Si la base de donnée ou la table sont inexistantes, elles seront automatiquement créées.
 
+### Compilation des fichiers statiques
+
+Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par compilation des fichiers `.scss` et `.js` enregistrés dans le dossier `assets/src`.
+
+Pour lancer la compilation en mode `dev` ou `production` des fichiers statiques à partir du bundle `webpack.mix.js`, exécuter les commandes suivantes depuis la racine du projet :
+
+```javascript
+npm install
+cd assets/src
+npm run production
+```
+
 ## Configuration du jeu
 
 Le fichier `settings.json`, situé à la racine du projet, permet de personnaliser différents paramètres du jeu et le mode de sauvegarde des scores.
@@ -67,15 +79,3 @@ Le fichier `settings.json`, situé à la racine du projet, permet de personnalis
 | nbOccurences    | number   | Nombre de cartes identiques (`2` ou `3`)                                                                     |
 | rankingLimit    | number   | Nombre de scores sauvegardés (entre `2` et `10`)                                                             |
 | visibleDuration | number   | Durée de visibilité d'une carte avant son retournement (entre `2` et `5`)                                    |
-
-### Compilation des fichiers statiques
-
-Les fichiers `assets/css/memory.css` et `assets/js/memory.js` sont obtenus par compilation des fichiers `.scss` et `.js` enregistrés dans le dossier `assets/src`.
-
-Pour lancer la compilation en mode `dev` ou `production` des fichiers statiques à partir du bundle `webpack.mix.js`, exécuter les commandes suivantes depuis la racine du projet :
-
-```javascript
-npm install
-cd assets/src
-npm run production
-```
