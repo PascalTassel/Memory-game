@@ -7,7 +7,6 @@ const dataController = require('../controllers/dataController');
 
 // Index
 router.get('/', (_, response) => {
-  //response.render('index');
   response.sendFile('index.html', { root: '.' });
 });
 
@@ -24,7 +23,6 @@ router.get('/favicon.ico', (_, response) => {
 // Assets files
 router.get('/assets/:dir/:file', (request, response) => {
   const {dir, file} = request.params;
-
   response.sendFile(`assets/${dir}/${file}`, { root: '.' });
 });
 
