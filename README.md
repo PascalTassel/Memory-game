@@ -8,7 +8,6 @@ Principaux modules `npm` utilisés côté back :
 
 - `express` pour le serveur
 - `mysql` pour la gestion des données
-- `ejs` pour le templating
 
 ## Screenshot
 
