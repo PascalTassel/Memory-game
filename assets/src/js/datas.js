@@ -127,7 +127,7 @@ export default class Datas {
     datas.date = `${dateString[0]}-${dateString[1]}-${dateString[2]} ${currentDate.toLocaleTimeString(locale)}`;
 
     if (this.backupMethod === 'database') {
-      return fetch(`${this.endPoint}/setScore`, {
+      return fetch(`${this.endPoint}/saveScore`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
