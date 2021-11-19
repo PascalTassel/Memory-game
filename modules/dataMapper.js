@@ -1,4 +1,4 @@
-// Db connection
+// Db server connection
 const connection = require('./database');
 
 const dataMapper = {
