@@ -11,21 +11,28 @@ const dataMapper = {
     connection.query(`
       CREATE DATABASE IF NOT EXISTS ??
     `,
-    [connection.config.database], callback);
+    [process.env.DATABASE], (dbError) => {
+      // Add database to connection settings
+      connection.changeUser({database : process.env.DATABASE}, function(error) {
+        if (error) throw error;
+      });
+
+      callback(dbError);
+    });
   },
   /**
    * Create table if not exist
    */
   setTable: (callback) => {
     connection.query(`
-      CREATE TABLE IF NOT EXISTS ??.??( 
+      CREATE TABLE IF NOT EXISTS ??( 
         score_id  SMALLINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
         player    VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
         score     SMALLINT NOT NULL,
         date      DATETIME NOT NULL
       )
     `,
-    [connection.config.database, dataMapper.table], callback);
+    [dataMapper.table], callback);
   },
   /**
    * Get ranking
