@@ -24,7 +24,7 @@ const data = {
    * Get game ranking
    */
   getRanking: (request, response) => {
-    dataMapper.getRanking(request.body.limit, (error, results) => {
+    dataMapper.getRanking(Number(request.body.limit), (error, results) => {
       if (error) throw error;
       response.send({ranking: results});
     });
@@ -33,7 +33,7 @@ const data = {
    * Get player rank
    */
   getRank: (request, response) => {
-    dataMapper.getRank(request.body.score, (error, results) => {
+    dataMapper.getRank(Number(request.body.score), (error, results) => {
       if (error) throw error;
       response.send({rank: results[0].rank});
     });
@@ -42,7 +42,12 @@ const data = {
    * Set player score
    */
   saveScore: (request, response) => {
-    dataMapper.saveScore(request.body, (error) => {
+    const playerData = {
+      player: request.body.player,
+      score: Number(request.body.score),
+      date: request.body.date
+    };
+    dataMapper.saveScore(playerData, (error) => {
       if (error) {
         return response.send({error: error.toString()});
       }
